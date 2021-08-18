@@ -17,7 +17,6 @@ tools:showIn="@layout/activity_main"
     android:scaleType="centerCrop"
     android:layout_width="match_parent"
     android:layout_height="360dp"
-    android:contentDescription="hello"
     />
 
 <com.example.testingapp.Utils.NonSwipeableViewPager

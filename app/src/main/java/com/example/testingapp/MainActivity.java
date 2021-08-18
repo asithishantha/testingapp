@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity  implements FiltersListFragm
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Instagram Filter");
+        getSupportActionBar().setTitle("Image Filter");
 
 
         //view
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity  implements FiltersListFragm
 
 
         tabLayout.setupWithViewPager(viewPager);
+
 
     }
 
@@ -106,7 +107,13 @@ public class MainActivity extends AppCompatActivity  implements FiltersListFragm
         adapter.addFragment(filtersListFragment, "FILTERS");
         adapter.addFragment(editImageFragment, "EDIT");
 
-        viewPager.setAdapter(adapter);
+        try {
+            viewPager.setAdapter(adapter);
+        }
+        catch(Exception e) {
+            System.out.print(e);
+        }
+
     }
 
 
@@ -120,6 +127,7 @@ public class MainActivity extends AppCompatActivity  implements FiltersListFragm
         img_preview = (ImageView) findViewById(R.id.image_preview);
 
         img_preview.setImageBitmap(originalBitmap);
+
 
     }
 
@@ -138,6 +146,7 @@ public class MainActivity extends AppCompatActivity  implements FiltersListFragm
     public void onSaturationChanged(float saturation) {
 
         saturationFinal = saturation;
+
         Filter myFilter= new Filter();
         myFilter.addSubFilter(new SaturationSubfilter(saturation));
         img_preview.setImageBitmap(myFilter.processFilter(finalBitmap.copy(Bitmap.Config.ARGB_8888,true)));
@@ -230,7 +239,7 @@ public class MainActivity extends AppCompatActivity  implements FiltersListFragm
 
                                     if (!TextUtils.isEmpty(path)) {
                                         Snackbar snackbar = Snackbar.make(coordinatorLayout,
-                                                "Image saced to gallery",
+                                                "Image saved to Gallery",
                                                 Snackbar.LENGTH_LONG)
                                                 .setAction("OPEN", new View.OnClickListener() {
                                                     @Override
@@ -260,7 +269,7 @@ public class MainActivity extends AppCompatActivity  implements FiltersListFragm
                         public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
                             token.continuePermissionRequest();
                         }
-                    });
+                    }).check();
         }
 
         private void openImage (String path){

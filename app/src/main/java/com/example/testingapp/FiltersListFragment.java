@@ -81,7 +81,7 @@ public class FiltersListFragment extends Fragment implements FiltersListFragment
 
                 Bitmap thumbImg;
                 if(bitmap == null)
-                    thumbImg= BitmapUtils.getBitmapFromAssets(getActivity(),MainActivity.pictureName,100,100);
+                    thumbImg= BitmapUtils.getBitmapFromAssets(getActivity(),MainActivity.pictureName,100 ,100);
                 else
                     thumbImg= Bitmap.createScaledBitmap(bitmap,100, 100, false);
 
